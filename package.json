@@ -1,0 +1,38 @@
+{
+    "name": "project-codes-service",
+    "version": "0.0.1-SNAPSHOT",
+    "author": "BoyCook",
+    "description": "Project codes service",
+    "contributors": [
+        {
+            "name": "Craig Cook",
+            "id": "BoyCook"
+        }
+    ],
+    "scripts": {
+        "start": "node serve.js",
+        "test": "make test",
+        "predeploy": "echo This will be run before deploying the app",
+        "postdeploy": "echo This will be run after deploying the app"
+    },
+    "main": "./lib/server",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/BoyCook/.git"
+    },
+    "keywords": [
+        "project",
+        "codes"
+    ],
+    "dependencies": {
+        "http-file-server": "https://github.com/BoyCook/HttpFileServerJS/tarball/master"
+    },
+    "devDependencies": {
+        "request": "*",
+        "should": "latest"
+    },
+    "engines": {
+        "node": ">=0.6"
+    }
+}
+
