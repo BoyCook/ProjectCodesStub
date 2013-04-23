@@ -14,7 +14,7 @@ If nothing is found a 404 is issued. The logic the server uses is:
 
 ## Data dir
 One of the [HttpFileServerJS](https://github.com/BoyCook/HttpFileServerJS) parameters is a base directory for where the
-data files are stored. In this case it is the directory `data`. There are already some sample files in there for usage.
+service will look for data files. In this case it is the directory `data`. There are already some sample files in there for usage.
 
 ## Project codes
 
@@ -33,7 +33,9 @@ This will serve the file `./data/codes/123.json`
 
 ## Prerequisites
 
-You must first install node.js http://nodejs.org
+* You must first install node.js http://nodejs.org
+* If you can install [git](http://git-scm.com) that is ideal,
+otherwise you can download the project [https://github.com/BoyCook/ProjectCodesStub/archive/master.zip](here)
 
 ## Running
 
