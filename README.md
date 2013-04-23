@@ -34,8 +34,7 @@ This will serve the file `./data/codes/123.json`
 ## Prerequisites
 
 * You must first install node.js http://nodejs.org
-* If you can install [git](http://git-scm.com) that is ideal,
-otherwise you can download the project [https://github.com/BoyCook/ProjectCodesStub/archive/master.zip](here)
+* If you can install [git](http://git-scm.com) that is ideal, otherwise you can download the project [here](https://github.com/BoyCook/ProjectCodesStub/archive/master.zip)
 
 ## Running
 
