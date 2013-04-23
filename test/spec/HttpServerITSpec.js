@@ -8,7 +8,7 @@ var expected = {
         html: '<div><div><a href="/codes/PC0001.json">PC0001.json</a></div><div><a href="/codes/PC0002.json">PC0002.json</a></div><div><a href="/codes/PC0003.json">PC0003.json</a></div></div>'
     },
     file: {
-        "data": "123"
+        "code": "PC0001"
     }
 };
 var server;
@@ -50,12 +50,23 @@ describe('HttpServer', function () {
         });
     });
 
-    describe.skip('#getFile', function () {
-        it('should get file ok', function (done) {
-            request(url + '/test/spec/HttpServerITSpec.js',
+    describe('#code', function () {
+        it('should get project code ok with extension', function (done) {
+            request({url: url + '/codes/PC0001.json'},
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
-                    //TODO: finish assertions
+                    var json = JSON.parse(body);
+                    json.should.eql(expected.file);
+                    done();
+                });
+        });
+
+        it('should get project code ok with Accept Header', function (done) {
+            request({url: url + '/codes/PC0001', headers: { Accept: 'application/json'}},
+                function (error, response, body) {
+                    response.statusCode.should.eql(200);
+                    var json = JSON.parse(body);
+                    json.should.eql(expected.file);
                     done();
                 });
         });
