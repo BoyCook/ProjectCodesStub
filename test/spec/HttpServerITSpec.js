@@ -3,9 +3,9 @@ var request = require('request');
 var url = 'http://localhost:8080';
 var expected = {
     dir: {
-        json: {"resources": ["spec"]},
-        xml: '<resources><resource>spec</resource></resources>',
-        html: '<div><div><a href="/test/spec">spec</a></div></div>'
+        json: {"resources": ["PC0001.json", "PC0002.json", "PC0003.json"]},
+        xml: '<resources><resource>PC0001.json</resource><resource>PC0002.json</resource><resource>PC0003.json</resource></resources>',
+        html: '<div><div><a href="/codes/PC0001.json">PC0001.json</a></div><div><a href="/codes/PC0002.json">PC0002.json</a></div><div><a href="/codes/PC0003.json">PC0003.json</a></div></div>'
     },
     file: {
         "data": "123"
@@ -20,7 +20,7 @@ describe('HttpServer', function () {
         done();
     });
 
-    describe.skip('#codes', function () {
+    describe('#codes', function () {
         it('should list directory contents as HTML ok', function (done) {
             request({url: url + '/codes', headers: { Accept: 'text/html'}},
                 function (error, response, body) {
