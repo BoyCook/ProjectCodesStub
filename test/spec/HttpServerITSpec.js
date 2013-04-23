@@ -70,12 +70,10 @@ describe('HttpServer', function () {
                     done();
                 });
         });
-    });
 
-    describe.skip('#createFile', function () {
-        it('should create file ok', function (done) {
+        it('should create project code ok', function (done) {
             request.put({
-                    url: url + '/test/newfile',
+                    url: url + '/codes/PC0004',
                     headers: {'content-type': 'application/json', dataType: 'json'},
                     body: JSON.stringify(expected.file)
                 },
@@ -86,11 +84,10 @@ describe('HttpServer', function () {
                     done();
                 });
         });
-    });
 
-    describe.skip('#deleteFile', function () {
-        it('should create file ok', function (done) {
-            request.del(url + '/test/newfile',
+
+        it('should delete project code ok', function (done) {
+            request.del(url + '/codes/PC0004',
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
                     done();
