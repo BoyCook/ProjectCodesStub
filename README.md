@@ -1,6 +1,6 @@
 ## Description
 A simple file based HTTP server in node.js based upon [HttpFileServerJS](https://github.com/BoyCook/HttpFileServerJS).
-It will serve up content from the filesystem, choosing a file based upon the URL path provided and the content type in 'Accept' header.
+It will serve up content from the filesystem, choosing a file based upon the URL path provided and the content type in `Accept` header.
 
 ## How it works
 It's quite simple, like you'd expect an HTTP server like [Apache](http://httpd.apache.org) or [Nginx](http://nginx.org) to work.
