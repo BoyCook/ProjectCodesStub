@@ -18,15 +18,15 @@ service will look for data files. In this case it is the directory `data`. There
 
 ## Functionality available
 * Project codes
-** List all
-** View instance
-** Create new
+    * List all
+    * View instance
+    * Create new
 * Employees
-** List all
-** View instance
-** Create new (test purposes only)
-** Assign project code
-** Book time to project code
+    * List all
+    * View instance
+    * Create new (test purposes only)
+    * Assign project code
+    * Book time to project code
 
 ##  Web resources available
 * `/codes` GET
