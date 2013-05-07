@@ -8,9 +8,9 @@ The service uses the URL path to work out what directory to look in but it also 
 If the path is a directory it will serve back the contents, if it's a file then it will serve the file back.
 If nothing is found a 404 is issued. The logic the server uses is:
 
-* Check for directory '{path}'
-* Check for file '{path}.{Accept}'
-* Check for file '{path}'
+* Check for directory `'{path}'`
+* Check for file `'{path}.{Accept}'`
+* Check for file `'{path}'`
 
 ## Data dir
 One of the [HttpFileServerJS](https://github.com/BoyCook/HttpFileServerJS) parameters is a base directory for where the
