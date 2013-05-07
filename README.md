@@ -16,6 +16,28 @@ If nothing is found a 404 is issued. The logic the server uses is:
 One of the [HttpFileServerJS](https://github.com/BoyCook/HttpFileServerJS) parameters is a base directory for where the
 service will look for data files. In this case it is the directory `data`. There are already some sample files in there for usage.
 
+## Functionality available
+* Project codes
+** List all
+** View instance
+** Create new
+* Employees
+** List all
+** View instance
+** Create new (test purposes only)
+** Assign project code
+** Book time to project code
+
+##  Web resources available
+* `/codes` GET
+* `/codes/{id}` GET/PUT
+* `/employees` GET
+* `/employees/{id}` GET/PUT
+* `/employees/{id}/codes` GET/PUT
+* `/employees/{id}/timesheets` GET
+* `/employees/{id}/timesheets/{id}` GET/PUT
+* `/employees/{id}/timesheets/{id}/project` GET/PUT
+
 ## Project codes
 
 This will list contents of directory `./data/codes`
@@ -49,7 +71,7 @@ This will serve the file `./data/employees/123.json`
 ## Prerequisites
 
 * You must first install node.js http://nodejs.org
-* If you can install [git](http://git-scm.com) that is ideal, otherwise you can download the project [here](https://github.com/BoyCook/ProjectCodesStub/archive/master.zip)
+* If you can install [git](http://git**scm.com) that is ideal, otherwise you can download the project [here](https://github.com/BoyCook/ProjectCodesStub/archive/master.zip)
 
 ## Running
 
@@ -61,14 +83,14 @@ Displaying results in the terminal (common usage):
 
     make test
 
-Running all the tests (calls test-ci and test-cov - best used by CI server):
+Running all the tests (calls test**ci and test**cov ** best used by CI server):
 
-    make test-all
+    make test**all
 
 Produce xUnit style XML report file:
 
-    make test-ci
+    make test**ci
 
 Running the tests with coverage and producing HTML Mocha coverage report file:
 
-    make test-cov
+    make test**cov
