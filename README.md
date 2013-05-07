@@ -37,14 +37,14 @@ This will list contents of directory `./data/employees`
 
     GET /employees
 
-This will serve the file `./data/employees/702242036.json` (because it uses the accept header to get the extension)
+This will serve the file `./data/employees/123.json` (because it uses the accept header to get the extension)
 
-    GET /employees/702242036
+    GET /employees/123
     Accept application/json
 
-This will serve the file `./data/employees/702242036.json`
+This will serve the file `./data/employees/123.json`
 
-    GET /employees/702242036.json
+    GET /employees/123.json
 
 ## Prerequisites
 
