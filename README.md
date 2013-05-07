@@ -29,29 +29,29 @@ service will look for data files. In this case it is the directory `data`. There
     * Book time to project code
 
 ##  Web resources available
-* `/codes` GET
-* `/codes/{id}` GET/PUT
+* `/projectcodes` GET
+* `/projectcodes/{id}` GET/PUT
 * `/employees` GET
 * `/employees/{id}` GET/PUT
-* `/employees/{id}/codes` GET/PUT
+* `/employees/{id}/projectcodes` GET/PUT
 * `/employees/{id}/timesheets` GET
 * `/employees/{id}/timesheets/{id}` GET/PUT
 * `/employees/{id}/timesheets/{id}/project` GET/PUT
 
 ## Project codes
 
-This will list contents of directory `./data/codes`
+This will list contents of directory `./data/projectcodes`
 
-    GET /codes
+    GET /projectcodes
 
-This will serve the file `./data/codes/123.json` (because it uses the accept header to get the extension)
+This will serve the file `./data/projectcodes/123.json` (because it uses the accept header to get the extension)
 
-    GET /codes/123
+    GET /projectcodes/123
     Accept application/json
 
-This will serve the file `./data/codes/123.json`
+This will serve the file `./data/projectcodes/123.json`
 
-    GET /codes/123.json
+    GET /projectcodes/123.json
 
 ## Employees
 
