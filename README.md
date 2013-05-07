@@ -31,6 +31,21 @@ This will serve the file `./data/codes/123.json`
 
     GET /codes/123.json
 
+## Employees
+
+This will list contents of directory `./data/employees`
+
+    GET /employees
+
+This will serve the file `./data/employees/702242036.json` (because it uses the accept header to get the extension)
+
+    GET /employees/702242036
+    Accept application/json
+
+This will serve the file `./data/employees/702242036.json`
+
+    GET /employees/702242036.json
+
 ## Prerequisites
 
 * You must first install node.js http://nodejs.org
