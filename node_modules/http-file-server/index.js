@@ -2,14 +2,14 @@ var parser =  process.env.HFS_COV ? require('./lib-cov/parser').Parser : require
 var fsutil = process.env.HFS_COV ? require('./lib-cov/fsutil').FSUtil : require('./lib/fsutil').FSUtil;
 var server = process.env.HFS_COV ? require('./lib-cov/server').HttpServer : require('./lib/server').HttpServer;
 var xmlobject = process.env.HFS_COV ? require('./lib-cov/xmlobject').XML : require('./lib/xmlobject').XML;
-var path = process.env.HFS_COV ? require('./lib-cov/path').Path : require('./lib/path').Path;
-var paths = process.env.HFS_COV ? require('./lib-cov/paths').Paths : require('./lib/paths').Paths;
+var route = process.env.HFS_COV ? require('./lib-cov/route').Route : require('./lib/route').Route;
+var routes = process.env.HFS_COV ? require('./lib-cov/routes').Routes : require('./lib/routes').Routes;
 
 module.exports = {
     Parser: parser,
     FSUtil: fsutil,
     HttpServer: server,
     XML: xmlobject,
-    Path: path,
-    Paths: paths
+    Route: route,
+    Routes: routes
 };
