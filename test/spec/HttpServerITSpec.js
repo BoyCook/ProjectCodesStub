@@ -163,6 +163,21 @@ describe('HttpServer', function () {
                     done();
                 });
         });
+
+        it('should assign time sheet to employee ok', function (done) {
+            request.put({
+                    url: url + '/employees/321/timesheets/TS130513',
+                    headers: {'content-type': 'application/json', dataType: 'json'},
+                    body: JSON.stringify(expected.file.timesheet)
+                },
+                function (error, response, body) {
+                    body = JSON.parse(body);
+                    response.statusCode.should.eql(201);
+                    body.should.eql(expected.file.timesheet);
+                    fs.isDir('./data/employees/321/timesheets/TS130513').should.be.true;
+                    done();
+                });
+        });
     });
 
     describe('#DeleteMopup', function () {
@@ -182,8 +197,16 @@ describe('HttpServer', function () {
                 });
         });
 
-        it('should delete employee projectcode ok', function (done) {
+        it('should delete employee project code ok', function (done) {
             request.del(url + '/employees/321/projectcodes/PC0001',
+                function (error, response, body) {
+                    response.statusCode.should.eql(200);
+                    done();
+                });
+        });
+
+        it('should delete employee time sheet ok', function (done) {
+            request.del(url + '/employees/321/timesheets/TS130513',
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
                     done();
