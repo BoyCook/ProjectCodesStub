@@ -17,7 +17,12 @@ If nothing is found a 404 is issued. The logic the server uses is:
 ## Data dir
 
 One of the [HttpFileServerJS](https://github.com/BoyCook/HttpFileServerJS) parameters is a base directory for where the
-service will look for data files. In this case it is the directory `data`. There are already some sample files in there for usage.
+service will look for data files. In this case it is the directory `./data`. There is already a directory structure with some
+sample files in there for usage:
+
+* `employees`
+* `projectcodes`
+* `timesheets`
 
 ## Functionality available
 
@@ -52,46 +57,46 @@ service will look for data files. In this case it is the directory `data`. There
 
 ## Project codes
 
-This will list contents of directory `./data/projectcodes`
+Project codes are stored in the directory `./data/projectcodes`, to list them all use:
 
     GET /projectcodes
 
-This will serve the file `./data/projectcodes/PC0001.json` (because it uses the accept header to get the extension)
+To serve an individual project code file `./data/projectcodes/PC0001.json` use:
 
     GET /projectcodes/PC0001
-    Accept application/json
+    Accept application/json (because it uses the accept header to get the extension)
 
-This will serve the file `./data/projectcodes/PC0001.json`
+Or you can use the extension directly:
 
     GET /projectcodes/PC0001.json
 
 ## Time sheets
 
-This will list contents of directory `./data/timesheets`
+Time sheets are stored in the directory `./data/timesheets`, to list them all use:
 
     GET /timesheets
 
-This will serve the file `./data/timesheets/TS130513.json` (because it uses the accept header to get the extension)
+To serve an individual time sheet file `./data/timesheets/TS130513.json` use:
 
     GET /timesheets/TS130513
-    Accept application/json
+    Accept application/json (because it uses the accept header to get the extension)
 
-This will serve the file `./data/timesheets/TS130513.json`
+Or you can use the extension directly:
 
     GET /timesheets/TS130513.json
 
 ## Employees
 
-This will list contents of directory `./data/employees`
+Employees are stored in the directory `./data/timesheets`, to list them all use:
 
     GET /employees
 
-This will serve the file `./data/employees/123.json` (because it uses the accept header to get the extension)
+To serve an individual employee file `./data/timesheets/TS130513.json` use:
 
     GET /employees/123
-    Accept application/json
+    Accept application/json (because it uses the accept header to get the extension)
 
-This will serve the file `./data/employees/123.json`
+Or you can use the extension directly:
 
     GET /employees/123.json
 
