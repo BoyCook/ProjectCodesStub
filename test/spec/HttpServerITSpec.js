@@ -106,12 +106,32 @@ describe('HttpServer', function () {
                 });
         });
 
-
+        it('should assign project code to employee ok', function (done) {
+            request.put({
+                    url: url + '/employees/321/projectcodes/PC0001',
+                    headers: {'content-type': 'application/json', dataType: 'json'},
+                    body: JSON.stringify(expected.file)
+                },
+                function (error, response, body) {
+                    body = JSON.parse(body);
+                    response.statusCode.should.eql(201);
+                    body.should.eql(expected.file);
+                    done();
+                });
+        });
     });
 
     describe('#DeleteMopup', function () {
         it('should delete project code ok', function (done) {
             request.del(url + '/projectcodes/PC0004',
+                function (error, response, body) {
+                    response.statusCode.should.eql(200);
+                    done();
+                });
+        });
+
+        it('should delete employee projectcode ok', function (done) {
+            request.del(url + '/employees/321/projectcodes/PC0001',
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
                     done();
