@@ -8,6 +8,8 @@ new HttpServer({
         '/',
         '/projectcodes',
         '/projectcodes/:id',
+        '/timesheets',
+        '/timesheets/:id',
         '/employees',
         { path: '/employees/:id', makeDir: true, routes: ['timesheets', 'projectcodes'] },
         '/employees/:id/projectcodes',

@@ -1,8 +1,10 @@
 ## Description
+
 A simple file based HTTP server in node.js based upon [HttpFileServerJS](https://github.com/BoyCook/HttpFileServerJS).
 It will serve up content from the filesystem, choosing a file based upon the URL path provided and the content type in `Accept` header.
 
 ## How it works
+
 It's quite simple, like you'd expect an HTTP server like [Apache](http://httpd.apache.org) or [Nginx](http://nginx.org) to work.
 The service uses the URL path to work out what directory to look in but it also uses the `Accept` header to work what the file extension is.
 If the path is a directory it will serve back the contents, if it's a file then it will serve the file back.
@@ -13,14 +15,20 @@ If nothing is found a 404 is issued. The logic the server uses is:
 * Check for file `{path}`
 
 ## Data dir
+
 One of the [HttpFileServerJS](https://github.com/BoyCook/HttpFileServerJS) parameters is a base directory for where the
 service will look for data files. In this case it is the directory `data`. There are already some sample files in there for usage.
 
 ## Functionality available
+
 * Project codes
     * List all
     * View instance
     * Create new
+* Time Sheets
+    * List all
+    * View instance
+    * Create new (test purposes only)
 * Employees
     * List all
     * View instance
@@ -29,8 +37,11 @@ service will look for data files. In this case it is the directory `data`. There
     * Book time to project code
 
 ##  Web resources available
+
 * `/projectcodes` GET
 * `/projectcodes/{id}` GET/PUT
+* `/timesheets` GET
+* `/timesheets/{id}` GET/PUT
 * `/employees` GET
 * `/employees/{id}` GET/PUT
 * `/employees/{id}/projectcodes` GET
@@ -45,14 +56,29 @@ This will list contents of directory `./data/projectcodes`
 
     GET /projectcodes
 
-This will serve the file `./data/projectcodes/123.json` (because it uses the accept header to get the extension)
+This will serve the file `./data/projectcodes/PC0001.json` (because it uses the accept header to get the extension)
 
-    GET /projectcodes/123
+    GET /projectcodes/PC0001
     Accept application/json
 
-This will serve the file `./data/projectcodes/123.json`
+This will serve the file `./data/projectcodes/PC0001.json`
 
-    GET /projectcodes/123.json
+    GET /projectcodes/PC0001.json
+
+## Time sheets
+
+This will list contents of directory `./data/timesheets`
+
+    GET /timesheets
+
+This will serve the file `./data/timesheets/TS130513.json` (because it uses the accept header to get the extension)
+
+    GET /timesheets/TS130513
+    Accept application/json
+
+This will serve the file `./data/timesheets/TS130513.json`
+
+    GET /timesheets/TS130513.json
 
 ## Employees
 
