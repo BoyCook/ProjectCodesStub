@@ -121,13 +121,28 @@ To create an employee file `./data/employee/{id}.json` use:
     PUT /employee/{id}
     Data { "id": "{id}" }
 
-Employee is a special case. Creating an employee also creates sub-directories to store project codes and time sheets:
+The employee `id` format is just 3 numbers: `[0-9][0-9][0-9]`. Employee is a special case,
+creating an employee also creates sub-directories to store project codes and time sheets:
 
     ./data/employee/{id}
     ./data/employee/{id}/projectcodes
     ./data/employee/{id}/timesheets
 
-The employee `id` format is just 3 numbers: `[0-9][0-9][0-9]`
+To assign a project code to an employee:
+
+    PUT /employee/{id}/projectcodes/{id}
+    Data { "code": "PC0001" }
+
+To create a time sheet entry for an employee:
+
+    PUT /employee/{id}/timesheets/{id}
+    Data { "code": "TS130513", "date": "13-05-2013" }
+
+
+To book time against a project for an employee:
+
+    PUT /employee/{id}/timesheets/{id}/project
+    Data { "code": "PC0001" }
 
 ## Prerequisites
 
