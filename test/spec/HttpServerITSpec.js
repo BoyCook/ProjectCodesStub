@@ -85,15 +85,6 @@ describe('HttpServer', function () {
                     done();
                 });
         });
-
-
-        it('should delete project code ok', function (done) {
-            request.del(url + '/projectcodes/PC0004',
-                function (error, response, body) {
-                    response.statusCode.should.eql(200);
-                    done();
-                });
-        });
     });
 
     describe('#Employee', function () {
@@ -110,7 +101,16 @@ describe('HttpServer', function () {
                     done();
                 });
         });
+    });
 
+    describe('#DeleteMopup', function () {
+        it('should delete project code ok', function (done) {
+            request.del(url + '/projectcodes/PC0004',
+                function (error, response, body) {
+                    response.statusCode.should.eql(200);
+                    done();
+                });
+        });
 
         it('should delete employee ok', function (done) {
             request.del(url + '/employees/321',
