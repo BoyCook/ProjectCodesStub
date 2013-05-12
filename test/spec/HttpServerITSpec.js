@@ -9,7 +9,8 @@ var expected = {
     },
     file: {
         "code": "PC0001"
-    }
+    },
+    employeee: { "id": "321" }
 };
 var server;
 
@@ -88,6 +89,31 @@ describe('HttpServer', function () {
 
         it('should delete project code ok', function (done) {
             request.del(url + '/projectcodes/PC0004',
+                function (error, response, body) {
+                    response.statusCode.should.eql(200);
+                    done();
+                });
+        });
+    });
+
+    describe('#Employee', function () {
+        it('should create employee ok', function (done) {
+            request.put({
+                    url: url + '/employees/321',
+                    headers: {'content-type': 'application/json', dataType: 'json'},
+                    body: JSON.stringify(expected.employeee)
+                },
+                function (error, response, body) {
+                    body = JSON.parse(body);
+                    response.statusCode.should.eql(201);
+                    body.should.eql(expected.employeee);
+                    done();
+                });
+        });
+
+
+        it('should delete employee ok', function (done) {
+            request.del(url + '/employees/321',
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
                     done();

@@ -5,13 +5,13 @@ new HttpServer({
     verbose: true,
     strictRoutes: true,
     routes: [
-        { path: '/projectcodes', makeDir: true },
-        { path: '/projectcodes/:id', makeDir: true },
-        { path: '/employees', makeDir: true },
+        '/projectcodes',
+        '/projectcodes/:id',
+        '/employees',
         { path: '/employees/:id', makeDir: true },
-        { path: '/employees/:id/projectcodes', makeDir: true },
-        { path: '/employees/:id/timesheets', makeDir: true },
+        '/employees/:id/projectcodes',
+        '/employees/:id/timesheets',
         { path: '/employees/:id/timesheets/:id', makeDir: true },
-        { path: '/employees/:id/timesheets/:id/project', makeDir: true }
+        '/employees/:id/timesheets/:id/project'
     ]
 }).start();
