@@ -3,6 +3,7 @@
 */
 function Route(path, config) {
     this.path = path;
+    this.routes = config && config.routes ? config.routes : [];
     this.makeDir = config && config.makeDir ? config.makeDir : false;
     this.regexp = this.pathRegExp(path
         , config ? config.sensitive : false

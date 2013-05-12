@@ -4,9 +4,9 @@ var url = 'http://localhost:8080';
 var HttpServer = require('../../index.js').HttpServer;
 var expected = {
     dir: {
-        json: {"resources": ["spec"]},
-        xml: '<resources><resource>spec</resource></resources>',
-        html: '<div><div><a href="/test/spec">spec</a></div></div>'
+        json: {"resources": ["temp", "test1.json"]},
+        xml: '<resources><resource>temp</resource><resource>test1.json</resource></resources>',
+        html: '<div><div><a href="/temp">temp</a></div><div><a href="/test1.json">test1.json</a></div></div>'
     },
     file: {
         "data": "123"
@@ -19,10 +19,10 @@ describe('HttpServer', function () {
     before(function (done) {
         server = new HttpServer({
             port: 8080,
-            baseDir: '.',
+            baseDir: './test/data',
             strictRoutes: true,
             routes: [
-                '/test', '/test/newfile', '/test/spec/HttpServerStrictITSpec.js'
+                '/', '/temp/newfile', '/test1.json'
             ]
         }).start(done);
     });
@@ -34,7 +34,7 @@ describe('HttpServer', function () {
     describe('#getDir', function () {
         it('should list strict directory route ok',
             function (done) {
-                request(url + '/test', function (error, response, body) {
+                request(url + '/', function (error, response, body) {
                     response.statusCode.should.eql(200);
                     body.should.eql(expected.dir.html);
                     done();
@@ -42,7 +42,7 @@ describe('HttpServer', function () {
         });
         it('should not list non-strict directory route ok',
             function (done) {
-                request(url + '/test/spec', function (error, response, body) {
+                request(url + '/temp', function (error, response, body) {
                     response.statusCode.should.eql(404);
                     body.should.eql(expected.invalid);
                     done();
@@ -52,7 +52,7 @@ describe('HttpServer', function () {
 
     describe('#getFile', function () {
         it('should get strict file ok', function (done) {
-            request(url + '/test/spec/HttpServerStrictITSpec.js',
+            request(url + '/test1.json',
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
                     //TODO: finish body assertions
@@ -61,7 +61,7 @@ describe('HttpServer', function () {
         });
 
         it('should not get non-strict file ok', function (done) {
-            request(url + '/test/spec/HttpServerITSpec.js',
+            request(url + '/test2.json',
                 function (error, response, body) {
                     response.statusCode.should.eql(404);
                     body.should.eql(expected.invalid);
@@ -73,7 +73,7 @@ describe('HttpServer', function () {
     describe('#createFile', function () {
         it('should create strict file ok', function (done) {
             request.put({
-                    url: url + '/test/newfile',
+                    url: url + '/temp/newfile',
                     headers: {'content-type': 'application/json', dataType: 'json'},
                     body: JSON.stringify(expected.file)
                 },
@@ -88,7 +88,7 @@ describe('HttpServer', function () {
 
         it('should not create non-strict file ok', function (done) {
             request.put({
-                    url: url + '/test/newfilenotstrict',
+                    url: url + '/temp/newfilenotstrict',
                     headers: {'content-type': 'application/json', dataType: 'json'},
                     body: JSON.stringify(expected.file)
                 },
@@ -102,7 +102,7 @@ describe('HttpServer', function () {
 
     describe('#deleteFile', function () {
         it('should delete strict file ok', function (done) {
-            request.del(url + '/test/newfile',
+            request.del(url + '/temp/newfile',
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
                     done();
@@ -110,7 +110,7 @@ describe('HttpServer', function () {
         });
 
         it('should not delete non-strict file', function (done) {
-            request.del(url + '/test/spec/HttpServerITSpec.js',
+            request.del(url + '/test2.json',
                 function (error, response, body) {
                     response.statusCode.should.eql(404);
                     body.should.eql(expected.invalid);

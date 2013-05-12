@@ -4,9 +4,9 @@ var url = 'http://localhost:8080';
 var HttpServer = require('../../index.js').HttpServer;
 var expected = {
     dir: {
-        json: {"resources": ["spec"]},
-        xml: '<resources><resource>spec</resource></resources>',
-        html: '<div><div><a href="/test/spec">spec</a></div></div>'
+        json: {"resources": ["temp", "test1.json"]},
+        xml: '<resources><resource>temp</resource><resource>test1.json</resource></resources>',
+        html: '<div><div><a href="/temp">temp</a></div><div><a href="/test1.json">test1.json</a></div></div>'
     },
     file: {
         "data": "123"
@@ -18,9 +18,9 @@ describe('HttpServer', function () {
     before(function (done) {
         server = new HttpServer({
             port: 8080,
-            baseDir: '.',
+            baseDir: './test/data',
             routes: [
-                { path: '/test/:filename', makeDir: true }
+                { path: '/temp/:filename', makeDir: true }
             ]
         }).start(done);
     });
@@ -32,7 +32,7 @@ describe('HttpServer', function () {
     describe('#getDir', function () {
         it('should list directory contents as HTML by default',
             function (done) {
-                request(url + '/test', function (error, response, body) {
+                request(url + '/', function (error, response, body) {
                     response.statusCode.should.eql(200);
                     body.should.eql(expected.dir.html);
                     done();
@@ -40,7 +40,7 @@ describe('HttpServer', function () {
             });
 
         it('should list directory contents as HTML ok', function (done) {
-            request({url: url + '/test', headers: { Accept: 'text/html'}},
+            request({url: url + '/', headers: { Accept: 'text/html'}},
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
                     body.should.eql(expected.dir.html);
@@ -49,7 +49,7 @@ describe('HttpServer', function () {
         });
 
         it('should list directory contents as JSON ok', function (done) {
-            request({url: url + '/test', headers: { Accept: 'application/json'}},
+            request({url: url + '/', headers: { Accept: 'application/json'}},
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
                     var json = JSON.parse(body);
@@ -59,7 +59,7 @@ describe('HttpServer', function () {
         });
 
         it('should list directory contents as XML ok', function (done) {
-            request({url: url + '/test', headers: { Accept: 'application/xml'}},
+            request({url: url + '/', headers: { Accept: 'application/xml'}},
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
                     body.should.eql(expected.dir.xml);
@@ -70,7 +70,7 @@ describe('HttpServer', function () {
 
     describe('#getFile', function () {
         it('should get file ok', function (done) {
-            request(url + '/test/spec/HttpServerITSpec.js',
+            request(url + '/test1.json',
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
                     //TODO: finish assertions
@@ -82,7 +82,7 @@ describe('HttpServer', function () {
     describe('#createFile', function () {
         it('should create file ok', function (done) {
             request.put({
-                    url: url + '/test/newfile',
+                    url: url + '/temp/newfile',
                     headers: {'content-type': 'application/json', dataType: 'json'},
                     body: JSON.stringify(expected.file)
                 },
@@ -98,7 +98,7 @@ describe('HttpServer', function () {
 
     describe('#deleteFile', function () {
         it('should delete file ok', function (done) {
-            request.del(url + '/test/newfile',
+            request.del(url + '/temp/newfile',
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
                     done();

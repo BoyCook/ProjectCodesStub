@@ -92,11 +92,19 @@ HttpServer.prototype.processPUT = function (req, res, inboundPath) {
         data += chunk.toString();
     });
     req.on("end", function () {
-        //TODO: get extension and file name properly
-        var extension = context.getExtension(req);
+        //TODO this is rubbish - refactor
+        //Make dir for entity if route specifies so
         if (route && route.route && route.route.makeDir) {
             fs.save(context.baseDir + inboundPath);
+            //Create sub-directories if specified
+            if (route.route.routes) {
+                for (var i = 0, len = route.route.routes.length; i < len; i++) {
+                    fs.save(context.baseDir + inboundPath + '/' + route.route.routes[i]);
+                }
+            }
         }
+        //TODO: get extension and file name properly
+        var extension = context.getExtension(req);
         fs.save(context.baseDir + inboundPath + '.' + extension, data);
         res.writeHead(201);
         res.end(data);
@@ -107,7 +115,12 @@ HttpServer.prototype.processDELETE = function (req, res, path) {
     //TODO this is rubbish - refactor
     var route = this.routes.match(path);
     if (route && route.route && route.route.makeDir) {
-        //TODO this is a hack - need to calculate extension properly
+        //Delete sub-directories 1st if specified
+        if (route.route.routes) {
+            for (var i = 0, len = route.route.routes.length; i < len; i++) {
+                fs.delete(this.baseDir + path + '/' + route.route.routes[i]);
+            }
+        }
         fs.delete(this.baseDir + path);
     }
     fs.delete(this.baseDir + path + '.json');

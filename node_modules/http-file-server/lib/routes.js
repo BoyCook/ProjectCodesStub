@@ -11,7 +11,7 @@ Routes.prototype.generatePathObjects = function () {
     for (var i = 0, len = this._routes.length; i < len; i++) {
         var route = this._routes[i];
         if (Object.isObject(route)) {
-            this.routes.push(new Route(route.path, { makeDir: route.makeDir }));
+            this.routes.push(new Route(route.path, { makeDir: route.makeDir, routes: route.routes }));
         } else {
             this.routes.push(new Route(route));
         }
