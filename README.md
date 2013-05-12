@@ -24,6 +24,8 @@ sample files in there for usage:
 * `projectcodes`
 * `timesheets`
 
+Please look at the sample files to note suggested formats etc.
+
 ## Functionality available
 
 * Project codes
@@ -70,6 +72,13 @@ Or you can use the extension directly:
 
     GET /projectcodes/PC0001.json
 
+To create a project code file `./data/projectcodes/{id}.json` use:
+
+    PUT /projectcodes/{id}
+    Data { "code": "{id}" }
+
+The project code `id` format is `PC` followed by 4 numbers: `PC[0-9][0-9][0-9][0-9]`
+
 ## Time sheets
 
 Time sheets are stored in the directory `./data/timesheets`, to list them all use:
@@ -85,6 +94,13 @@ Or you can use the extension directly:
 
     GET /timesheets/TS130513.json
 
+To create a time sheet file `./data/timesheets/{id}.json` use:
+
+    PUT /timesheets/{id}
+    Data { "code": "{id}", "date": "{date}" }
+
+The time sheet `id` format is `TS` followed by the week commencing date: `PC[dd][mm][yy]`
+
 ## Employees
 
 Employees are stored in the directory `./data/timesheets`, to list them all use:
@@ -99,6 +115,19 @@ To serve an individual employee file `./data/timesheets/TS130513.json` use:
 Or you can use the extension directly:
 
     GET /employees/123.json
+
+To create an employee file `./data/employee/{id}.json` use:
+
+    PUT /employee/{id}
+    Data { "id": "{id}" }
+
+Employee is a special case. Creating an employee also creates sub-directories to store project codes and time sheets:
+
+    ./data/employee/{id}
+    ./data/employee/{id}/projectcodes
+    ./data/employee/{id}/timesheets
+
+The employee `id` format is just 3 numbers: `[0-9][0-9][0-9]`
 
 ## Prerequisites
 
