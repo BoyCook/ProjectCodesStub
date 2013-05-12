@@ -5,6 +5,7 @@ new HttpServer({
     verbose: true,
     strictRoutes: true,
     routes: [
+        '/',
         '/projectcodes',
         '/projectcodes/:id',
         '/employees',
