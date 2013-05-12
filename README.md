@@ -33,7 +33,8 @@ service will look for data files. In this case it is the directory `data`. There
 * `/projectcodes/{id}` GET/PUT
 * `/employees` GET
 * `/employees/{id}` GET/PUT
-* `/employees/{id}/projectcodes` GET/PUT
+* `/employees/{id}/projectcodes` GET
+* `/employees/{id}/projectcodes/{id}` GET/PUT
 * `/employees/{id}/timesheets` GET
 * `/employees/{id}/timesheets/{id}` GET/PUT
 * `/employees/{id}/timesheets/{id}/project` GET/PUT

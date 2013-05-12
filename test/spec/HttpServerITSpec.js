@@ -101,9 +101,12 @@ describe('HttpServer', function () {
                     body.should.eql(expected.employeee);
                     fs.isDir('./data/employees/321').should.be.true;
                     fs.isDir('./data/employees/321/timesheets').should.be.true;
+                    fs.isDir('./data/employees/321/projectcodes').should.be.true;
                     done();
                 });
         });
+
+
     });
 
     describe('#DeleteMopup', function () {
@@ -121,6 +124,7 @@ describe('HttpServer', function () {
                     response.statusCode.should.eql(200);
                     fs.isNotDir('./data/employees/321').should.be.true;
                     fs.isNotDir('./data/employees/321/timesheets').should.be.true;
+                    fs.isNotDir('./data/employees/321/projectcodes').should.be.true;
                     done();
                 });
         });

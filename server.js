@@ -8,7 +8,7 @@ new HttpServer({
         '/projectcodes',
         '/projectcodes/:id',
         '/employees',
-        { path: '/employees/:id', makeDir: true, routes: ['timesheets'] },
+        { path: '/employees/:id', makeDir: true, routes: ['timesheets', 'projectcodes'] },
         '/employees/:id/projectcodes',
         '/employees/:id/timesheets',
         { path: '/employees/:id/timesheets/:id', makeDir: true },
