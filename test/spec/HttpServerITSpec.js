@@ -1,6 +1,7 @@
 var should = require('should');
 var request = require('request');
 var url = 'http://localhost:8080';
+var fs = require('../../node_modules/http-file-server/index.js').FSUtil;
 var expected = {
     dir: {
         json: {"resources": ["PC0001.json", "PC0002.json", "PC0003.json"]},
@@ -98,6 +99,8 @@ describe('HttpServer', function () {
                     body = JSON.parse(body);
                     response.statusCode.should.eql(201);
                     body.should.eql(expected.employeee);
+                    fs.isDir('./data/employees/321').should.be.true;
+                    fs.isDir('./data/employees/321/timesheets').should.be.true;
                     done();
                 });
         });
@@ -116,6 +119,8 @@ describe('HttpServer', function () {
             request.del(url + '/employees/321',
                 function (error, response, body) {
                     response.statusCode.should.eql(200);
+                    fs.isNotDir('./data/employees/321').should.be.true;
+                    fs.isNotDir('./data/employees/321/timesheets').should.be.true;
                     done();
                 });
         });
