@@ -20,7 +20,7 @@ describe('HttpServer', function () {
         done();
     });
 
-    describe('#codes', function () {
+    describe('#ProjectCodes', function () {
         it('should list directory contents as HTML ok', function (done) {
             request({url: url + '/projectcodes', headers: { Accept: 'text/html'}},
                 function (error, response, body) {
@@ -50,7 +50,7 @@ describe('HttpServer', function () {
         });
     });
 
-    describe('#code', function () {
+    describe('#ProjectCode', function () {
         it('should get project code ok with extension', function (done) {
             request({url: url + '/projectcodes/PC0001.json'},
                 function (error, response, body) {
