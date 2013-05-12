@@ -94,6 +94,18 @@ describe('HttpServer', function () {
                     done();
                 });
         });
+
+        it('should not create duplicate', function (done) {
+            request.put({
+                    url: url + '/temp/newfile',
+                    headers: {'content-type': 'application/json', dataType: 'json'},
+                    body: JSON.stringify(expected.file)
+                },
+                function (error, response, body) {
+                    response.statusCode.should.eql(409);
+                    done();
+                });
+        });
     });
 
     describe('#deleteFile', function () {

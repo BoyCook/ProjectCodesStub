@@ -94,7 +94,14 @@ HttpServer.prototype.processPUT = function (req, res, inboundPath) {
     req.on("end", function () {
         //TODO this is rubbish - refactor
         //Make dir for entity if route specifies so
+        var code = 201;
         if (route && route.route && route.route.makeDir) {
+            if (fs.exists(context.baseDir + inboundPath)) {
+                res.writeHead(409);
+                res.end('409 - conflict: resource already exists');
+                return;
+            }
+
             fs.save(context.baseDir + inboundPath);
             //Create sub-directories if specified
             if (route.route.routes) {
@@ -105,6 +112,11 @@ HttpServer.prototype.processPUT = function (req, res, inboundPath) {
         }
         //TODO: get extension and file name properly
         var extension = context.getExtension(req);
+        if (fs.exists(context.baseDir + inboundPath + '.' + extension)) {
+            res.writeHead(409);
+            res.end('409 - conflict: resource already exists');
+            return;
+        }
         fs.save(context.baseDir + inboundPath + '.' + extension, data);
         res.writeHead(201);
         res.end(data);

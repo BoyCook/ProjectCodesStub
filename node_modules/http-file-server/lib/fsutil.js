@@ -5,9 +5,20 @@ function FSUtil() {
     //Not using prototype, don't want to store state
 }
 
+FSUtil.exists = function (path) {
+    return fs.existsSync(path);
+};
+
 FSUtil.isDir = function (path) {
     if (fs.existsSync(path)) {
         return fs.statSync(path).isDirectory();
+    }
+    return false;
+};
+
+FSUtil.isFile = function (path) {
+    if (fs.existsSync(path)) {
+        return fs.statSync(path).isFile();
     }
     return false;
 };
